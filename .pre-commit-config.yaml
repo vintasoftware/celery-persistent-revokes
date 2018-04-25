@@ -1,0 +1,28 @@
+- repo: git://github.com/pre-commit/pre-commit-hooks
+  sha: v0.9.2
+  hooks:
+    - id: check-added-large-files
+      args: ['--maxkb=500']
+    - id: check-byte-order-marker
+    - id: check-case-conflict
+    - id: check-merge-conflict
+    - id: check-symlinks
+    - id: debug-statements
+    - id: detect-private-key
+
+- repo: local
+  hooks:
+  - id: isort
+    name: isort-local
+    entry : pipenv run isort
+    language: python
+    types: [python]
+    exclude: ((docs/.+)|(.+/migrations/.+)|(tests/settings.py))
+    pass_filenames: true
+  - id: prospector
+    name: prospector-local
+    entry: pipenv run prospector --messages-only
+    language: python
+    types: [python]
+    exclude: ((docs/.+)|(.+/migrations/.+)|(tests/settings.py))
+    pass_filenames: true
