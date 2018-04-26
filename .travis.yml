@@ -5,6 +5,15 @@ language: python
 python:
   - "3.6"
 
+addons:
+  apt:
+    sources:
+      - deadsnakes
+    packages:
+      - python2.7
+      - python3.4
+      - python3.5
+
 env:
   - TOX_ENV=py36-django-111
   - TOX_ENV=py35-django-111
