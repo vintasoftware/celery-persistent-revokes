@@ -1,5 +1,5 @@
-import mock
 from unittest import TestCase
+import mock
 from model_mommy import mommy
 
 from celery_persistent_revokes.models import CeleryTaskRevoke
@@ -22,7 +22,7 @@ class RevokableTaskDecoratorTests(TestCase):
         app.task = (
             lambda *eargs, **ekwargs: (
                 lambda f: (
-                    lambda *args, **kwargs: f(mocked_task, *args, **kwargs)
+                    lambda *args, **kwargs: f(mocked_task, *args, **kwargs)  # noqa
                 )
             )
         )
@@ -47,7 +47,7 @@ class RevokableTaskDecoratorTests(TestCase):
         app.task = (
             lambda *decorator_args, **decorator_kwargs: (
                 lambda f: (
-                    lambda *args, **kwargs: f(mocked_task, *args, **kwargs)
+                    lambda *args, **kwargs: f(mocked_task, *args, **kwargs)  # noqa
                 )
             )
         )
@@ -69,7 +69,7 @@ class RevokableTaskDecoratorTests(TestCase):
         app.task = (
             lambda *decorator_args, **decorator_kwargs: (
                 lambda f: (
-                    lambda *args, **kwargs: f(mocked_task, *args, **kwargs)
+                    lambda *args, **kwargs: f(mocked_task, *args, **kwargs)  # noqa
                 )
             )
         )

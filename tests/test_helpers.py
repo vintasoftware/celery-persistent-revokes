@@ -1,6 +1,6 @@
+from unittest import TestCase
 import mock
 import six
-from unittest import TestCase
 
 from celery_persistent_revokes.helpers import (
     _get_revoke_backend, _is_task_scheduled, revoke, list_revokes, is_task_revoked,
@@ -29,32 +29,30 @@ class TaskIsScheduledTests(TestCase):
     def test_returns_true_if_task_is_scheduled(self, inspect):
         inspector_mock = mock.MagicMock()
         inspect.return_value = inspector_mock
-        inspector_mock.scheduled = lambda: [
-            {
-                'worker1.example.com': [
-                    {
-                        "eta": "2010-06-07 09:07:52",
-                        "priority": 0,
-                        "request": {
-                            "name": "tasks.sleeptask",
-                            "id": "1a7980ea-8b19-413e-91d2-0b74f3844c4d",
-                            "args": "[1]",
-                            "kwargs": "{}"
-                        }
-                    },
-                    {
-                        "eta": "2010-06-07 09:07:53",
-                        "priority": 0,
-                        "request": {
-                            "name": "tasks.sleeptask",
-                            "id": "49661b9a-aa22-4120-94b7-9ee8031d219d",
-                            "args": "[2]",
-                            "kwargs": "{}"
-                        }
+        inspector_mock.scheduled = lambda: {
+            'worker1.example.com': [
+                {
+                    "eta": "2010-06-07 09:07:52",
+                    "priority": 0,
+                    "request": {
+                        "name": "tasks.sleeptask",
+                        "id": "1a7980ea-8b19-413e-91d2-0b74f3844c4d",
+                        "args": "[1]",
+                        "kwargs": "{}"
                     }
-                ],
-            },
-        ]
+                },
+                {
+                    "eta": "2010-06-07 09:07:53",
+                    "priority": 0,
+                    "request": {
+                        "name": "tasks.sleeptask",
+                        "id": "49661b9a-aa22-4120-94b7-9ee8031d219d",
+                        "args": "[2]",
+                        "kwargs": "{}"
+                    }
+                }
+            ],
+        }
 
         value_returned = _is_task_scheduled('1a7980ea-8b19-413e-91d2-0b74f3844c4d')
 
@@ -64,32 +62,30 @@ class TaskIsScheduledTests(TestCase):
     def test_returns_false_if_task_is_scheduled(self, inspect):
         inspector_mock = mock.MagicMock()
         inspect.return_value = inspector_mock
-        inspector_mock.scheduled = lambda: [
-            {
-                'worker1.example.com': [
-                    {
-                        "eta": "2010-06-07 09:07:52",
-                        "priority": 0,
-                        "request": {
-                            "name": "tasks.sleeptask",
-                            "id": "1a7980ea-8b19-413e-91d2-0b74f3844c4d",
-                            "args": "[1]",
-                            "kwargs": "{}"
-                        }
-                    },
-                    {
-                        "eta": "2010-06-07 09:07:53",
-                        "priority": 0,
-                        "request": {
-                            "name": "tasks.sleeptask",
-                            "id": "49661b9a-aa22-4120-94b7-9ee8031d219d",
-                            "args": "[2]",
-                            "kwargs": "{}"
-                        }
+        inspector_mock.scheduled = lambda: {
+            'worker1.example.com': [
+                {
+                    "eta": "2010-06-07 09:07:52",
+                    "priority": 0,
+                    "request": {
+                        "name": "tasks.sleeptask",
+                        "id": "1a7980ea-8b19-413e-91d2-0b74f3844c4d",
+                        "args": "[1]",
+                        "kwargs": "{}"
                     }
-                ],
-            },
-        ]
+                },
+                {
+                    "eta": "2010-06-07 09:07:53",
+                    "priority": 0,
+                    "request": {
+                        "name": "tasks.sleeptask",
+                        "id": "49661b9a-aa22-4120-94b7-9ee8031d219d",
+                        "args": "[2]",
+                        "kwargs": "{}"
+                    }
+                }
+            ],
+        }
 
         value_returned = _is_task_scheduled('aloalo')
 

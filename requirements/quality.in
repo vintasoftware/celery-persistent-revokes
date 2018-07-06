@@ -1,0 +1,9 @@
+# Requirements for code quality checks
+
+isort
+pylint                    # linter for python
+pylint-django             # Pylint plugin for improving code analysis for when using Django
+bandit                    # linter for common security issues in Python code
+safety                    # checks dependencies for known security vulnerabilities
+pre-commit                # Adds a git hook to check quality before commit
+prospector[with-vulture]  # linter wrapper

@@ -28,32 +28,54 @@ clean-pyc: ## remove Python file artifacts
 	find . -name '*~' -exec rm -f {} +
 
 lint: ## check style with prospector
-	pipenv run prospector
+	prospector
 
 test: ## run tests quickly with the default Python
-	pipenv run python runtests.py tests
+	python runtests.py tests
 
 test-all: ## run tests on every Python version with tox
-	pipenv run tox
+	tox
 
 coverage: ## check code coverage quickly with the default Python
-	pipenv run coverage run --source celery_persistent_revokes runtests.py tests
-	pipenv run coverage report -m
-	pipenv run coverage html
+	coverage run --source celery_persistent_revokes runtests.py tests
+	coverage report -m
+	coverage html
 	open htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/celery-persistent-revokes.rst
 	rm -f docs/modules.rst
-	pipenv run sphinx-apidoc -o docs/ celery_persistent_revokes
+	sphinx-apidoc -o docs/ celery_persistent_revokes
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
 
+upgrade: ## update the requirements/*.txt files with the latest packages satisfying requirements/*.in
+	pip install -q pip-tools
+	pip-compile --upgrade -o requirements/dev.txt requirements/base.in requirements/dev.in requirements/quality.in
+	pip-compile --upgrade -o requirements/doc.txt requirements/base.in requirements/doc.in
+	pip-compile --upgrade -o requirements/quality.txt requirements/quality.in
+	pip-compile --upgrade -o requirements/test.txt requirements/base.in requirements/test.in
+	pip-compile --upgrade -o requirements/travis.txt requirements/travis.in
+	# Let tox control the Django version for tests
+	sed '/django==/d' requirements/test.txt > requirements/test.tmp
+	mv requirements/test.tmp requirements/test.txt
+
+upgrade_private: ## update requirements/private.txt with the latest packages satisfying requirements/private.in
+	pip install -q pip-tools
+	pip-compile --upgrade -o requirements/private.txt requirements/private.in
+
+requirements: ## install development environment requirements
+	pip install -qr requirements/dev.txt --exists-action w
+	pip-sync requirements/dev.txt requirements/private.txt requirements/test.txt
+
 release: clean ## package and upload a release
-	pipenv run python setup.py sdist upload
-	pipenv run python setup.py bdist_wheel upload
+	python setup.py sdist upload
+	python setup.py bdist_wheel upload
+
+selfcheck: ## check that the Makefile is well-formed
+	@echo "The Makefile is well-formed."
 
 sdist: clean ## package
-	pipenv run python setup.py sdist
+	python setup.py sdist
 	ls -l dist

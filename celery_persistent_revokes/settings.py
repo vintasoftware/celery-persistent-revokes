@@ -21,4 +21,4 @@ def get_setting(setting_key):
     if is_django_available:
         django_settings_value = getattr(settings, setting_key, None)
 
-    return (env_value or django_settings_value or DEFAULT_SETTINGS.get(setting_key))
+    return env_value or django_settings_value or DEFAULT_SETTINGS.get(setting_key)

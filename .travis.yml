@@ -3,36 +3,29 @@
 language: python
 
 python:
+  - "2.7"
+  - "3.5"
   - "3.6"
 
-addons:
-  apt:
-    sources:
-      - deadsnakes
-    packages:
-      - python2.7
-      - python3.4
-      - python3.5
-
 env:
-  - TOX_ENV=py36-django-111
-  - TOX_ENV=py35-django-111
-  - TOX_ENV=py34-django-111
-  - TOX_ENV=py27-django-111
-  - TOX_ENV=py36-django-20
-  - TOX_ENV=py35-django-20
-  - TOX_ENV=py34-django-20
+  - DJANGO=1.11
+  - DJANGO=2.0
 
 matrix:
-  fast_finish: true
+  exclude:
+    - python: "2.7"
+      env: DJANGO=2.0
+  include:
+    - python: "3.6"
+      env: TOXENV=quality
+    - python: "3.6"
+      env: TOXENV=docs
 
-# command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
-  - pip install pipenv
-  - pipenv install --dev
+  - pip install -r requirements/travis.txt
 
-# command to run tests using coverage, e.g. python setup.py test
-script: pipenv run tox -e $TOX_ENV
+script:
+  - tox
 
 after_success:
-  - pipenv run codecov -e TOX_ENV
+  - codecov

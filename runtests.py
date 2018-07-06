@@ -28,10 +28,10 @@ def process_kwargs(kwarg):
 
 if __name__ == '__main__':
 
-    args = [a for a in sys.argv[1:] if not a.startswith('--')]
-    kwargs = dict(
+    program_args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    program_kwargs = dict(
         process_kwargs(a[2:])
         for a in sys.argv[1:] if a.startswith('--')
     )
 
-    run_tests(*args, **kwargs)
+    run_tests(*program_args, **program_kwargs)

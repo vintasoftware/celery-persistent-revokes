@@ -66,9 +66,8 @@ Ready to contribute? Here's how to set up `celery-persistent-revokes` for local 
 
     $ mkvirtualenv celery-persistent-revokes
     $ cd celery-persistent-revokes/
-    $ [sudo] pip install pipenv
-    $ pipenv install --dev
-    $ pipenv run python setup.py develop
+    $ pip install -r requirements/dev.txt
+    $ python setup.py develop
 
 4. Create a branch for local development::
 
@@ -79,8 +78,8 @@ Ready to contribute? Here's how to set up `celery-persistent-revokes` for local 
 5. When you're done making changes, check that your changes pass prospector and the
    tests, including testing other Python versions with tox::
 
-        $ pipenv run prospector
-        $ pipenv run python setup.py test
+        $ prospector
+        $ python setup.py test
         $ make test-all
 
    To get prospector and tox, just pip install them into your virtualenv.
@@ -119,4 +118,4 @@ Tips
 
 To run a subset of tests::
 
-    $ pipenv run python runtests.py tests.test_celery_persistent_revokes
+    $ python runtests.py tests.test_celery_persistent_revokes

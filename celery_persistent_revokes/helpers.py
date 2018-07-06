@@ -15,12 +15,12 @@ def _get_revoke_backend():
 
 def _is_task_scheduled(task_id):
     inspector = inspect()
-    for item in inspector.scheduled():
-        for tasks in item.values():
-            for task in tasks:
-                if task_id == task['request']['id']:
-                    return True
+    scheduled_tasks = inspector.scheduled()
 
+    for worker_tasks in scheduled_tasks.values():
+        for task in worker_tasks:
+            if task_id == task['request']['id']:
+                return True
     return False
 
 

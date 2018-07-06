@@ -13,7 +13,7 @@ from django.test import TestCase
 # from celery_persistent_revokes import models
 
 
-class Celery_persistent_revokesTests(TestCase):
+class CeleryPersistentRevokesTests(TestCase):
 
     def setUp(self):
         pass

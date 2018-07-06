@@ -14,7 +14,7 @@ def revokable_task(app, *args, **kwargs):
             task_id = self.request.id
             if is_task_revoked(task_id):
                 delete_revoke(task_id)
-                return
+                return None
 
             if original_task_has_bind:
                 return func(self, *task_args, **task_kwargs)

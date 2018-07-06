@@ -1,0 +1,4 @@
+# Requirements for test runs.
+
+mock                      # Mocks for unittests
+model-mommy               # Object factory for Django

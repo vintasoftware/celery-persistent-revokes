@@ -33,6 +33,8 @@ pylint:
     - invalid-name
     - no-self-use
     - no-member
+    - import-error
+    - no-name-in-module
   options:
     max-line-length: 100
     max-parents: 15
@@ -45,6 +47,7 @@ ignore-paths:
   - venv
   - env
   - docs
+  - tests
 
 ignore-patterns:
   - .+/migrations/.+

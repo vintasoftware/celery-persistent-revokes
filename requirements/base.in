@@ -1,0 +1,5 @@
+# Core requirements for using this application
+
+Django
+django-model-utils        # Utils for Django models
+celery                    # Asynchronous task queue/job queue

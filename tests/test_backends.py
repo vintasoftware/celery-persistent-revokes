@@ -1,5 +1,5 @@
-import six
 from unittest import TestCase
+import six
 from model_mommy import mommy
 from django.test import override_settings
 
@@ -42,5 +42,5 @@ class DjangoDatabaseTests(TestCase):
     @override_settings(
         CELERY_PERSISTENT_REVOKES_MODEL='celery_persistent_revokes.CeleryTaskRevoke')
     def tests_gets_the_revoke_model_correctly(self):
-        retrieved_model = self.backend._get_revoke_model()
+        retrieved_model = self.backend._get_revoke_model()  # noqa
         self.assertEqual(retrieved_model, CeleryTaskRevoke)

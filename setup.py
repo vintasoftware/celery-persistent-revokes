@@ -47,7 +47,10 @@ history = open('CHANGELOG.rst').read().replace('.. :changelog:', '')
 setup(
     name='celery-persistent-revokes',
     version=version,
-    description="""Celery task revokes are stored on memory or on file. This packages makes possible to easely customize how your revokes are stored (Ex.: Database).""",
+    description=(
+        'Celery task revokes are stored on memory or on file. This packages makes '
+        'possible to easely customize how your revokes are stored (Ex.: Database).'
+    ),
     long_description=readme + '\n\n' + history,
     author='Hugo Bessa',
     author_email='hugo@vinta.com.br',
@@ -56,7 +59,7 @@ setup(
         'celery_persistent_revokes',
     ],
     include_package_data=True,
-    install_requires=["django-model-utils>=2.0",],
+    install_requires=["django-model-utils>=2.0"],
     zip_safe=False,
     keywords='celery-persistent-revokes',
     classifiers=[

@@ -14,14 +14,14 @@
   hooks:
   - id: isort
     name: isort-local
-    entry : pipenv run isort
+    entry : isort
     language: python
     types: [python]
     exclude: ((docs/.+)|(.+/migrations/.+)|(tests/settings.py))
     pass_filenames: true
   - id: prospector
     name: prospector-local
-    entry: pipenv run prospector --messages-only
+    entry: prospector --messages-only
     language: python
     types: [python]
     exclude: ((docs/.+)|(.+/migrations/.+)|(tests/settings.py))

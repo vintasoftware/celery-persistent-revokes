@@ -1,13 +1,15 @@
-import six
 from unittest import TestCase
+import six
 from django.test import override_settings
 
 from celery_persistent_revokes.settings import get_setting
 
 if six.PY2:
-    from test.test_support import EnvironmentVarGuard  # Python(2.7 < 3)
+    # Python(2.7 < 3)
+    from test.test_support import EnvironmentVarGuard  # noqa
 else:
-    from test.support import EnvironmentVarGuard  # Python >=3
+    # Python >=3
+    from test.support import EnvironmentVarGuard  # noqa
 
 
 class GetSettingsTests(TestCase):
