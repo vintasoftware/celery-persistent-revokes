@@ -1,4 +1,5 @@
 # Requirements for test runs.
 
+coverage                  # Analyzes test coverage
 mock                      # Mocks for unittests
 model-mommy               # Object factory for Django

@@ -6,12 +6,13 @@
 #
 amqp==2.3.2               # via kombu
 billiard==3.5.0.3         # via celery
-celery==4.1.1
+celery==4.2.0
+coverage==4.5.1
 django-model-utils==3.1.2
 kombu==4.2.1              # via celery
 mock==2.0.0
 model-mommy==1.6.0
-pbr==4.0.3                # via mock
-pytz==2018.4              # via celery, django
+pbr==4.1.0                # via mock
+pytz==2018.5              # via celery, django
 six==1.11.0               # via mock, model-mommy
 vine==1.1.4               # via amqp
