@@ -35,6 +35,7 @@ pylint:
     - no-member
     - import-error
     - no-name-in-module
+    - logging-format-interpolation
   options:
     max-line-length: 100
     max-parents: 15
