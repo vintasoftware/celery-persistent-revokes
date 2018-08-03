@@ -5,13 +5,13 @@ Celery Persistent Revokes
 .. image:: https://badge.fury.io/py/celery-persistent-revokes.svg
     :target: https://badge.fury.io/py/celery-persistent-revokes
 
-.. image:: https://travis-ci.org/hugobessa/celery-persistent-revokes.svg?branch=master
-    :target: https://travis-ci.org/hugobessa/celery-persistent-revokes
+.. image:: https://travis-ci.org/vintasoftware/celery-persistent-revokes.svg?branch=master
+    :target: https://travis-ci.org/vintasoftware/celery-persistent-revokes
 
-.. image:: https://codecov.io/gh/hugobessa/celery-persistent-revokes/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/hugobessa/celery-persistent-revokes
+.. image:: https://codecov.io/gh/vintasoftware/celery-persistent-revokes/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/vintasoftware/celery-persistent-revokes
 
-Celery task revokes are stored on memory or on file. This packages makes possible to easely customize how your revokes are stored (Ex.: Database).
+Celery task revokes are stored on memory or on file. This packages makes possible to easily customize how your revokes are stored (Ex.: Database).
 
 Documentation
 -------------
@@ -51,7 +51,8 @@ Add Celery Persistent Revokes's URL patterns:
 Features
 --------
 
-* TODO
+* Built-in tasks revokes using Django default database
+* Support for custom backends
 
 Running Tests
 -------------
